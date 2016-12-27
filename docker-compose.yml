@@ -4,4 +4,6 @@ services:
     image: ruby:2.3
     volumes:
       - .:/app
-    command: bash -c 'cd /app && bundle && bundle exec rails server --bind 0.0.0.0'
+    command: bash -c 'cd /app && rm -f tmp/pids/server.pid && bundle && bundle exec rails server --bind 0.0.0.0'
+    ports:
+      - 3000:3000
