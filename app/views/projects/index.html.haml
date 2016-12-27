@@ -1,0 +1,10 @@
+%table
+  %tr
+    %th Project Name
+    %th Builds
+    %th Tests
+  - @projects.each do |project|
+    %tr
+      %td= link_to project.name, project_path(project)
+      %td= link_to project.builds.count, project_builds_path(project)
+      %td= link_to project.tests.count, project_tests_path(project)

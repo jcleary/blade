@@ -1,0 +1,19 @@
+Project :
+= @project.name
+
+%table
+  %tr
+    %th Build Date
+    %th Tests
+    %th Passed
+    %th Failed
+    %th Duration
+  - @project.builds.order(:created_at).each do |build|
+    %tr
+      %td= link_to build.created_at.strftime('%d/%m/%Y %H:%m:%S'), project_build_path(@project, build)
+      %td= build.test_runs.count
+      %td= build.test_runs.where(status: 'passed').count
+      %td= build.test_runs.where(status: 'failed').count
+      %td= build.test_runs.sum(:duration)
+
+
