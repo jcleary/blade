@@ -20,6 +20,11 @@ class Api::BuildsController < Api::BaseController
         status: example['status'],
         duration: example['run_time']
       )
+      test.update(
+        average_duration: test.test_runs.average(:duration),
+        passed_count: test.test_runs.where(status: 'passed').count,
+        failed_count: test.test_runs.where(status: 'failed').count
+      )
     end
   end
 end
