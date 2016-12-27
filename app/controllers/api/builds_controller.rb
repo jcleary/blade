@@ -11,8 +11,10 @@ class Api::BuildsController < Api::BaseController
 
   def add_tests(examples)
     examples.each do |example|
-      test = @project.tests.find_or_create_by(description: example['full_description'])
-      test.name = example['name']
+      test = @project.tests.find_or_create_by(
+        name: example['description'],
+        description: example['full_description']
+      )
       test.test_runs.create(
         build: @build,
         status: example['status'],
@@ -20,5 +22,4 @@ class Api::BuildsController < Api::BaseController
       )
     end
   end
-
 end
