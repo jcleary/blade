@@ -1,0 +1,7 @@
+version: '2'
+services:
+  web:
+    image: ruby:2.3
+    volumes:
+      - .:/app
+    command: bash -c 'cd /app && bundle && bundle exec rails server --bind 0.0.0.0'
