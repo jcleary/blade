@@ -1,0 +1,10 @@
+%table
+  %tr
+    %th Test
+    %th Average Run Time
+    %th Last Run
+  - @tests.each do |test|
+    %tr
+      %td= test.name
+      %td= test.test_runs.average(:duration).round(2)
+      %td= test.test_runs.last.duration.round(2)
