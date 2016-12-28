@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
   belongs_to :organization
-  has_many :builds
-  has_many :tests
+  has_many :builds, dependent: :destroy
+  has_many :tests, dependent: :destroy
 end
