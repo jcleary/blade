@@ -1,0 +1,18 @@
+= render '/shared/project_bar'
+
+%h3 Builds
+
+%table.table
+  %tr
+    %th Build date
+    %th Tests
+    %th Duration
+    %th 10 slowest tests
+  - @builds.each do |build|
+    %tr
+      %td= build.created_at.strftime('%d/%m/%Y %H:%M:%S')
+      %td= build.test_runs.count
+      %td= minutes_and_seconds(build.total_duration)
+      %td= minutes_and_seconds(build.test_runs.slowest.pluck(:duration).compact.sum)
+       
+

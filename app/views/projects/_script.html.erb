@@ -1,9 +1,9 @@
-#!/bin/bash
+!/bin/bash
 
 REPO=git@github.com:CorporateRewards/myrewards.git
 FOLDER=target_app
 BRANCH=feature/faster_tests
-BLADE=http://192.168.99.100:3000/api/projects/<%= @project.id %>/builds
+BLADE_API=<%= api_project_builds_url(@project) %>
 
 function header {
   echo " ---------------------------------"
@@ -27,7 +27,7 @@ function clone_target_app {
 function run_tests {
   docker-compose up -d
   docker exec targetapp_myrewards.app_1 bash -c "rake db:drop db:create db:test:prepare && rspec -fj --out /app/log/rspec.json"
-  curl -XPOST -H 'Content-Type:application/json' -d @log/rspec.json $BLADE
+  curl -XPOST -H 'Content-Type:application/json' -d @log/rspec.json $BLADE_API
   docker-compose kill
 }
 
