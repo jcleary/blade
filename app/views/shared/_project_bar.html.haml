@@ -1,0 +1,10 @@
+%ol.breadcrumb
+  %li
+    %a{ href: project_path(@project) }
+      = @project.name
+  %li
+    %a{ href: project_tests_path(@project) }
+      = "Tests (#{@project.tests.count})" 
+  %li
+    %a{ href: project_builds_path(@project) }
+      = "Builds (#{@project.builds.count})"
