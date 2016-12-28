@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227221851) do
+ActiveRecord::Schema.define(version: 20161227232502) do
 
   create_table "builds", force: :cascade do |t|
     t.integer  "project_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161227221851) do
     t.float    "average_duration"
     t.integer  "passed_count"
     t.integer  "failed_count"
+    t.string   "file_path"
+    t.integer  "line_number"
   end
 
 end
