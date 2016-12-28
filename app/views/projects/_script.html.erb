@@ -1,0 +1,41 @@
+#!/bin/bash
+
+REPO=git@github.com:CorporateRewards/myrewards.git
+FOLDER=target_app
+BRANCH=feature/faster_tests
+BLADE=http://192.168.99.100:3000/api/projects/<%= @project.id %>/builds
+
+function header {
+  echo " ---------------------------------"
+  echo " Blade Runner"
+  echo " ---------------------------------"
+}
+
+function setup_docker {
+  docker-machine start default
+  eval $(docker-machine env default)
+}
+
+function clone_target_app {
+  if [ ! -d "$FOLDER" ]; then
+    git clone $REPO $FOLDER
+  fi
+  cd $FOLDER
+  git checkout $BRANCH
+}
+
+function run_tests {
+  docker-compose up -d
+  docker exec targetapp_myrewards.app_1 bash -c "rake db:drop db:create db:test:prepare && rspec -fj --out /app/log/rspec.json"
+  curl -XPOST -H 'Content-Type:application/json' -d @log/rspec.json $BLADE
+  docker-compose kill
+}
+
+header
+setup_docker
+clone_target_app
+for i in `seq 1 10`;
+do
+  echo "Running test $i"
+  run_tests
+done
