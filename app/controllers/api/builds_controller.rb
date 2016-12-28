@@ -1,10 +1,15 @@
 class Api::BuildsController < Api::BaseController
   def create
-    @project = Project.find params[:project_id]
-    @build = @project.builds.create 
-    add_tests(params[:examples])
-    
-    head :created
+    Build.transaction do
+      begin
+        @project = Project.find params[:project_id]
+        @build = @project.builds.create 
+        add_tests(params[:examples])
+        head :created
+      else
+        head :internal_server_error
+      end
+    end
   end
 
   private 
