@@ -23,7 +23,9 @@ class Api::BuildsController < Api::BaseController
       test.update(
         average_duration: test.test_runs.average(:duration),
         passed_count: test.test_runs.where(status: 'passed').count,
-        failed_count: test.test_runs.where(status: 'failed').count
+        failed_count: test.test_runs.where(status: 'failed').count,
+        file_path: example['file_path'],
+        line_number: example['line_number']
       )
     end
   end
