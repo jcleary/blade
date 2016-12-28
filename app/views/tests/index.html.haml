@@ -1,12 +1,12 @@
-%table
+
+%table.table
   %tr
     %th Test
-    %th Average Run Time
-    %th Last Run
+    %th Average duration
     %th Pass Ratio
-  - @tests.each do |test|
+  - @tests.order(average_duration: :desc).each do |test|
     %tr
       %td= test.name
       %td= test.average_duration.round(2)
-      %td= test.test_runs.last.duration.round(2)
-      %td= (test.passed_count / (test.passed_count + test.failed_count)).round(2)
+      %td= test.pass_ratio.round(2)
+
