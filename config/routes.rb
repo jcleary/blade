@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'pages#index' 
+
   resources :projects do
     resources :tests
     resources :builds 
