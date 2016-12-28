@@ -10,43 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227232502) do
+ActiveRecord::Schema.define(version: 20161228172047) do
 
-  create_table "builds", force: :cascade do |t|
+  create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "organizations", force: :cascade do |t|
+  create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", force: :cascade do |t|
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  create_table "test_runs", force: :cascade do |t|
+  create_table "test_runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "test_id"
     t.integer  "build_id"
     t.string   "status"
-    t.float    "duration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "duration",   limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "tests", force: :cascade do |t|
+  create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description",      limit: 65535
     t.integer  "project_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.float    "average_duration"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.float    "average_duration", limit: 24
     t.integer  "passed_count"
     t.integer  "failed_count"
     t.string   "file_path"
