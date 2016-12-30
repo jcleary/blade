@@ -1,0 +1,9 @@
+%h3 Non-Deterministic Tests
+%table.table
+  %tr
+    %th Test
+    %th Failures
+  - @project.non_deterministic_tests.each do |test|
+    %tr
+      %td= test.name
+      %td= test.failed_count
