@@ -10,11 +10,10 @@
     %th Duration
     %th 10 slowest tests
   - @builds.each do |build|
-    - failures = build.test_runs.where(status: 'failed').count
     %tr
       %td= link_to build.created_at.strftime('%d/%m/%Y %H:%M:%S'), project_build_path(@project, build)
-      %td= build.test_runs.count
-      %td= failures if failures > 0
+      %td= link_to build.test_runs.count, project_build_test_runs_path(@project, build)
+      %td= link_to build.failed_count, project_build_test_runs_path(@project, build, status: 'failed') if build.failed_count > 0
       %td= minutes_and_seconds(build.total_duration)
       %td= minutes_and_seconds(build.test_runs.slowest.pluck(:duration).compact.sum)
        

@@ -1,0 +1,12 @@
+= render 'shared/project_bar'
+%table.table
+  %tr
+    %th Test
+    %th Duration
+    %th Status
+    - @test_runs.each do |test_run|
+      %tr
+        %td= test_run.test.name
+        %td= test_run.duration
+        %td= test_run.status
+      

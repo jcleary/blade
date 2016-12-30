@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tests
-    resources :builds 
+    resources :builds do
+      resources :test_runs
+    end
   end
 
   namespace :api do
