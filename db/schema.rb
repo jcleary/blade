@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230094532) do
+ActiveRecord::Schema.define(version: 20161231074737) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "failed_count"
+    t.integer  "failed_count",                          default: 0
+    t.integer  "test_count",                            default: 0
+    t.float    "duration",           limit: 24,         default: 0.0
+    t.float    "x_slowest_duration", limit: 24,         default: 0.0
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
