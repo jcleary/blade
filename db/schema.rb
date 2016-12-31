@@ -14,12 +14,13 @@ ActiveRecord::Schema.define(version: 20161231074737) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "failed_count",                          default: 0
     t.integer  "test_count",                            default: 0
     t.float    "duration",           limit: 24,         default: 0.0
     t.float    "x_slowest_duration", limit: 24,         default: 0.0
+    t.text     "request_body",       limit: 4294967295
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
