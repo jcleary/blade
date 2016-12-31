@@ -9,4 +9,12 @@ class Test < ApplicationRecord
       0
     end
   end
+
+  def update_summary
+      update(
+        average_duration: test_runs.average(:duration),
+        passed_count: test_runs.where(status: 'passed').count,
+        failed_count: test_runs.where(status: 'failed').count
+      )
+  end
 end
