@@ -1,0 +1,23 @@
+= render '/shared/project_bar'
+%table.table
+  %tr
+    %th.active Test
+    %td= @test.name
+  %tr
+    %th.active Description
+    %td= @test.description
+  %tr
+    %th.active File
+    %td= "#{@test.file_path}:#{@test.line_number}"
+  %tr
+    %th.active Average duration
+    %td= @test.average_duration
+  %tr
+    %th.active Passed
+    %td= @test.passed_count
+  %tr
+    %th.active Failed 
+    %td= @test.failed_count
+  %tr
+    %th.active Non-deterministic failures
+    %td= @test.non_deterministic_count
