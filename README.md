@@ -1,3 +1,3 @@
 # Blade
 
-Blade a is tool for analysing RSpec test results and finding flaky and slow tests.
+A tool for analyzing RSpec tests to help discover non-deterministic and slow tests.
