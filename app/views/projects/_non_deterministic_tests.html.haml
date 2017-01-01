@@ -3,7 +3,9 @@
   %tr
     %th Test
     %th Failures
-  - @project.non_deterministic_tests.each do |test|
+  - @project.tests.non_deterministic.each do |test|
     %tr
-      %td= test.name
-      %td= test.failed_count
+      %td= link_to test.name, project_test_path(@project, test)
+      %td
+        = test.non_deterministic_count
+        = "(#{number_to_percentage(test.non_deterministic_count.to_f / (test.passed_count + test.failed_count))})"
