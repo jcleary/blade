@@ -1,0 +1,10 @@
+%h3 Slowest Tests
+%p The following table shows the 10 slowest tests from the past 5 builds.
+%table.table
+  %tr
+    %th Test
+    %th Average Duration
+  - @project.tests.slowest_first.limit(5).each do |test|
+    %tr
+      %td= link_to test.name, project_test_path(@project, test)
+      %td= test.average_duration
