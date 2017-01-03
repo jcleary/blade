@@ -7,7 +7,7 @@
     %th Pass Ratio
   - @tests.order(average_duration: :desc).each do |test|
     %tr
-      %td= test.name
+      %td= link_to test.name, project_test_path(@project, test)
       %td= test.average_duration.round(2)
       %td= test.pass_ratio.round(2)
 
