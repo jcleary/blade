@@ -23,3 +23,5 @@ test:
 
 production:
   <<: *default
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
+
