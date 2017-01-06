@@ -22,6 +22,9 @@ test:
   database: 'blade_test'
 
 production:
-  <<: *default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  database: 'blade'
   url: <%= ENV['CLEARDB_DATABASE_URL'] %>
 
