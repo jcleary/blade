@@ -16,6 +16,7 @@ gem 'haml'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'devise'
 gem 'omniauth-github'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug', platform: :mri
