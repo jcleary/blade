@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170106141345) do
+ActiveRecord::Schema.define(version: 20170106153101) do
 
   create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "project_id"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20170106141345) do
     t.float    "duration",           limit: 24,         default: 0.0
     t.float    "x_slowest_duration", limit: 24,         default: 0.0
     t.text     "request_body",       limit: 4294967295
+  end
+
+  create_table "organization_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "organization_id"
+    t.integer "user_id"
   end
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
