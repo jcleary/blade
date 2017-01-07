@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :organizations, through: :organization_users
   has_many :organization_users
+  has_many :organizations, through: :organization_users
+  has_many :projects, through: :organizations
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

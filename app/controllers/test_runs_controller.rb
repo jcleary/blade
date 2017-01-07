@@ -1,6 +1,7 @@
 class TestRunsController < ApplicationController
+  load_and_authorize_resource :project
+
   def index
-    @project = Project.find params[:project_id]
     @build = @project.builds.find params[:build_id]
     @test_runs = @build.test_runs
     if params[:status].present?

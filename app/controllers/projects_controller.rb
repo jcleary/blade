@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @projects = Project.all.order(:name)
   end 
 
   def show
-    @project = Project.find params[:id]
   end
 end
