@@ -8,6 +8,6 @@ class Api::BuildsController < Api::BaseController
     head :created
 
   rescue ActiveRecord::RecordInvalid
-    head :internal_server_error
+    render json: { errors: @build.errors.full_messages }, status: :bad_request
   end
 end
