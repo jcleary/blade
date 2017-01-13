@@ -18,6 +18,7 @@ gem 'devise'
 gem 'omniauth-github'
 gem 'cancancan' 
 gem 'figaro'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'byebug', platform: :mri
