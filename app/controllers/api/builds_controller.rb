@@ -5,6 +5,7 @@ class Api::BuildsController < Api::BaseController
       project_id: @project.id,
       request_body: { examples: params[:examples] }
     )
+    @build.delay.process_request_body
     head :created
 
   rescue ActiveRecord::RecordInvalid
