@@ -2,12 +2,10 @@ class Build < ApplicationRecord
   belongs_to :project
   has_many :test_runs, dependent: :destroy
 
-  serialize :request_body, JSON
-
-  def process_request_body
+  def process_test_runs(new_test_runs)
     test_runs.destroy_all
-    request_body['examples'].each do |example|
-      add_test_run(example)
+    new_test_runs.each do |test_run|
+      add_test_run(test_run)
     end
     update_summary
   end
