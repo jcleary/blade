@@ -21,7 +21,9 @@ gem 'figaro'
 gem 'delayed_job_active_record'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug', platform: :mri
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
 end
 
 group :development do
@@ -29,9 +31,10 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'yaml_db'
 end
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

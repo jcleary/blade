@@ -12,21 +12,21 @@
 
 ActiveRecord::Schema.define(version: 20170115105421) do
 
-  create_table "builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "builds", force: :cascade do |t|
     t.integer  "project_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "failed_count",                  default: 0
-    t.integer  "test_count",                    default: 0
-    t.float    "duration",           limit: 24, default: 0.0
-    t.float    "x_slowest_duration", limit: 24, default: 0.0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "failed_count",       default: 0
+    t.integer  "test_count",         default: 0
+    t.float    "duration",           default: 0.0
+    t.float    "x_slowest_duration", default: 0.0
   end
 
-  create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",                      default: 0, null: false
     t.integer  "attempts",                      default: 0, null: false
     t.text     "handler",    limit: 4294967295,             null: false
-    t.text     "last_error", limit: 65535
+    t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -34,43 +34,43 @@ ActiveRecord::Schema.define(version: 20170115105421) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "organization_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "organization_users", force: :cascade do |t|
     t.integer "organization_id"
     t.integer "user_id"
   end
 
-  create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  create_table "test_runs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "test_runs", force: :cascade do |t|
     t.integer  "test_id"
     t.integer  "build_id"
     t.string   "status"
-    t.float    "duration",   limit: 24
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.float    "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "tests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tests", force: :cascade do |t|
     t.string   "name"
-    t.text     "description",             limit: 65535
+    t.text     "description"
     t.integer  "project_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.float    "average_duration",        limit: 24
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.float    "average_duration"
     t.integer  "passed_count"
     t.integer  "failed_count"
     t.string   "file_path"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170115105421) do
     t.integer  "non_deterministic_count"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20170115105421) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
