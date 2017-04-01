@@ -21,7 +21,6 @@ gem 'figaro'
 gem 'delayed_job_active_record'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'byebug', platform: :mri
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
 end
