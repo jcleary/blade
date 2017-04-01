@@ -21,4 +21,5 @@ test:
   adapter: sqlite3
   database: 'blade_test'
 
-
+production:
+  <<: *default
